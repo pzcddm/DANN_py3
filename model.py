@@ -44,3 +44,4 @@ class CNNModel(nn.Module):
         domain_output = self.domain_classifier(reverse_feature)
 
         return class_output, domain_output
+

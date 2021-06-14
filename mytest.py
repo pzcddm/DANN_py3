@@ -4,8 +4,8 @@ import torch.utils.data
 from torch.utils.data import TensorDataset
 import numpy as np
 
-def mytest(dataset_name,source_path,target_path):
-    assert dataset_name in ['source', 'target']
+def mytest(target_test_dataset):
+    #assert dataset_name in ['source', 'target']
 
     model_root = 'models'
 
@@ -17,26 +17,26 @@ def mytest(dataset_name,source_path,target_path):
 
     """load data"""
 
-    if dataset_name == 'target':
+#     if dataset_name == 'target':
         
-        target_x_path=os.path.join(target_path,'freqDomain/freqSignal.csv')
-        target_y_path=os.path.join(target_path,'label.csv')
-        target_x=np.loadtxt(target_x_path,delimiter=',',dtype=np.float32)
-        target_y=np.loadtxt(target_y_path,delimiter=',',dtype=np.int64)
-        target_x=torch.from_numpy(target_x)
-        target_y=torch.from_numpy(target_y)
-        dataset=TensorDataset(target_x,target_y)
-    else:
-        source_x_path=os.path.join(source_path, 'freqDomain/freqSignal.csv')
-        source_y_path=os.path.join(source_path,'label.csv')
-        source_x=np.loadtxt(source_x_path,delimiter=',',dtype=np.float32)
-        source_y=np.loadtxt(source_y_path,delimiter=',',dtype=np.int64)
-        source_x=torch.from_numpy(source_x)
-        source_y=torch.from_numpy(source_y)
-        dataset=TensorDataset(source_x,source_y)
+#         target_x_path=os.path.join(target_path,'freqDomain/freqSignal.csv')
+#         target_y_path=os.path.join(target_path,'label.csv')
+#         target_x=np.loadtxt(target_x_path,delimiter=',',dtype=np.float32)
+#         target_y=np.loadtxt(target_y_path,delimiter=',',dtype=np.int64)
+#         target_x=torch.from_numpy(target_x)
+#         target_y=torch.from_numpy(target_y)
+#         dataset=TensorDataset(target_x,target_y)
+#     else:
+#         source_x_path=os.path.join(source_path, 'freqDomain/freqSignal.csv')
+#         source_y_path=os.path.join(source_path,'label.csv')
+#         source_x=np.loadtxt(source_x_path,delimiter=',',dtype=np.float32)
+#         source_y=np.loadtxt(source_y_path,delimiter=',',dtype=np.int64)
+#         source_x=torch.from_numpy(source_x)
+#         source_y=torch.from_numpy(source_y)
+#         dataset=TensorDataset(source_x,source_y)
 
     dataloader = torch.utils.data.DataLoader(
-        dataset=dataset,
+        dataset=target_test_dataset,
         batch_size=batch_size,
         shuffle=False,
         num_workers=8

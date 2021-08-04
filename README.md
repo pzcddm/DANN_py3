@@ -1,50 +1,21 @@
-## This is a pytorch implementation of the paper *[Unsupervised Domain Adaptation by Backpropagation](http://sites.skoltech.ru/compvision/projects/grl/)*
+## 用DANN实现按键检测
 
-
+本项目是fork[fungtion/DANN_py3](https://github.com/fungtion/DANN_py3)
 #### Environment
 - Pytorch 1.6
 - Python 3.8.5
 
 #### Network Structure
 
-
-![p8KTyD.md.jpg](https://s1.ax1x.com/2018/01/12/p8KTyD.md.jpg)
+在原网络的基础上基本只修改了输入层的信息
 
 #### Dataset
 
-First, download target dataset mnist_m from [pan.baidu.com](https://pan.baidu.com/s/1pXaMkVsQf_yUT51SeYh27g) fetch code: kjan or [Google Drive](https://drive.google.com/open?id=0B_tExHiYS-0veklUZHFYT19KYjg), and put mnist_m dataset into dataset/mnist_m, the structure is as follows:
-
-```
---dataset--mnist_m--mnist_m_train
-                 |--mnist_m_test
-                 |--mnist_m_train_labels.txt
-                 |--mnist_m_test_labels.txt
-                 |--.gitkeep
-
-```
-
+数据都在collect_data文件夹中，其中的子文件夹others是我之前采集的数据的汇总，其他子文件夹是五月底采集的几组测试数据，每组有300个键（按顺序采集并切断好的信号）
 #### Training
 
-Then, run `python main.py`
+进入MyDann，用jupyter notebook运行
+程序会把源域和目标域的一部分作为训练集，然后再用目标域的其他部分作为测试集
 
-
-#### Docker
-
-- build image
-
-```bash
-docker build -t pytorch_dann .
-```
-
-- run docker container
-
-```bash
-docker run -it --runtime=nvidia \
-  -u $(id -u):$(id -g) \
-  -v /YOUR/DANN/PROJECT/dataset:/DANN/dataset \
-  -v /YOUR/DANN/PROJECT/models:/DANN/models \
-  pytorch_dann:latest \
-  python main.py
-
-```
-
+#### Todo
+1. DANN停止训练的epoch如何确定？
